@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 12:51:18 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 15:09:03 by csilva           ###   ########.fr       */
+/*   Updated: 2026/05/21 15:56:06 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ int	int_validator(char *s)
 
 int	int_parser(char *s)
 {
-	int	validator;
 	int	valid_int;
 
-	validator = int_validator(s);
-	if (validator == 0)
-		return (0);
+	if (int_validator(s) == 0 || strlen(s) > 10)
+		return (-1);
 	valid_int = atoi(s);
-	if (valid_int <= 0 || strlen(s) > 10)
-		return (0);
+	if (valid_int < 0)
+		return (-1);
 	return (valid_int);
 }
 
@@ -53,20 +51,20 @@ t_scheduler	scheduler_parser(char *s)
 
 int	config_parser(t_config *config)
 {
-	if (config->number_of_coders == 0)
+	if (config->number_of_coders <= 0)
 		return (fprintf(stderr, "Number of coders must be a valid integer\n"));
-	if (config->time_to_burnout == 0)
+	if (config->time_to_burnout <= 0)
 		return (fprintf(stderr, "Time to burnout must be a valid integer\n"));
-	if (config->time_to_compile == 0)
+	if (config->time_to_compile <= 0)
 		return (fprintf(stderr, "Time to compile must be a valid integer\n"));
-	if (config->time_to_debug == 0)
+	if (config->time_to_debug <= 0)
 		return (fprintf(stderr, "Time to debug must be a valid integer\n"));
-	if (config->time_to_refactor == 0)
+	if (config->time_to_refactor <= 0)
 		return (fprintf(stderr, "Time to refactor must be a valid integer\n"));
-	if (config->number_of_compiles_required == 0)
+	if (config->number_of_compiles_required <= 0)
 		return (fprintf(stderr, "Number of compiles required must be a "
 				"valid integer\n"));
-	if (config->dongle_cooldown == 0)
+	if (config->dongle_cooldown < 0)
 		return (fprintf(stderr, "Dongle cooldown must be a valid integer\n"));
 	if (config->scheduler == INVALID)
 		return (fprintf(stderr, "Scheduler format is invalid, "

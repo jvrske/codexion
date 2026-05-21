@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 14:56:08 by csilva           ###   ########.fr       */
+/*   Updated: 2026/05/21 15:46:54 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ typedef struct s_coder
 	t_config	*config;
 }	t_coder;
 
-// Parser
+/* Parser */
 int			int_validator(char *s);
 int			int_parser(char *s);
 int			config_parser(t_config *config);
 t_config	*parser(char **argv);
 t_scheduler	scheduler_parser(char *s);
 
-// Utils
+/* Utils */
 void		free_all(void *config);
 
 #endif

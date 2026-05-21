@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:25 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 14:30:38 by csilva           ###   ########.fr       */
+/*   Updated: 2026/05/21 15:44:35 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_config	*parser(char **argv)
 	config->scheduler = scheduler_parser(argv[8]);
 	if (!config_parser(config))
 	{
+		free_all(config);
 		return (NULL);
-		exit(1);
 	}
 	return (config);
 }
