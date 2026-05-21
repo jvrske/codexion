@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 12:51:18 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 15:56:06 by csilva           ###   ########.fr       */
+/*   Updated: 2026/05/21 16:27:55 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int	config_parser(t_config *config)
 		return (fprintf(stderr, "Dongle cooldown must be a valid integer\n"));
 	if (config->scheduler == INVALID)
 		return (fprintf(stderr, "Scheduler format is invalid, "
-				"must be FIFO or EDF\n"));
+				"must be fifo or edf\n"));
 	return (1);
 }

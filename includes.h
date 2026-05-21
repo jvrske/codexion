@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 15:46:54 by csilva           ###   ########.fr       */
+/*   Updated: 2026/05/21 16:27:13 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+
+typedef struct s_sim	t_sim;
 
 typedef enum schedule
 {
@@ -37,14 +39,34 @@ typedef struct s_config
 	t_scheduler	scheduler;
 }	t_config;
 
+typedef struct s_dongle
+{
+	pthread_mutex_t	mutex;
+	pthread_cond_t	cond;
+	int				held;
+	long long		release_time;
+}	t_dongle;
+
 typedef struct s_coder
 {
-	int			coder_id;
-	int			compiles_done;
-	long		last_compile;
-
-	t_config	*config;
+	int				coder_id;
+	int				compiles_done;
+	long long		last_compile;
+	t_config		*config;
+	t_sim			*sim;
 }	t_coder;
+
+typedef struct s_sim
+{
+	t_config		config;
+	t_dongle		*dongles;
+	t_coder			*coders;
+	pthread_t		*threads;
+	long long		start_time;
+	int				running;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	state_mutex;
+}	t_sim;
 
 /* Parser */
 int			int_validator(char *s);
