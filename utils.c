@@ -5,8 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/21 11:24:31 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 11:24:32 by csilva           ###   ########.fr       */
+/*   Created: 2026/05/21 14:55:04 by csilva            #+#    #+#             */
+/*   Updated: 2026/05/21 14:55:55 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "includes.h"
+
+void	free_all(void *config)
+{
+	if (config)
+		free(config);
+}
