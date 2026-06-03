@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:34 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/03 11:37:33 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/03 12:27:55 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 				"<scheduler>\n"), 1);
 	config = parser(argv);
 	if (!config)
-		return(1);
+		return (1);
 	return (0);
 }
