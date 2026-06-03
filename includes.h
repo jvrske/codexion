@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 16:27:13 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/02 11:11:52 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <unistd.h>
 
 typedef struct s_sim	t_sim;
 
@@ -76,6 +77,9 @@ t_config	*parser(char **argv);
 t_scheduler	scheduler_parser(char *s);
 
 /* Utils */
+long long	get_time_ms(void);
+void		log_state(t_sim *sim, int id, char *msg);
+void		log_burnout(t_sim *sim, int id);
 void		free_all(void *config);
 
 #endif
