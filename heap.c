@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 11:34:55 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/05 15:17:32 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/05 15:36:21 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,43 @@ void	heap_push(t_heap *heap, t_heap_node node, t_scheduler sched)
 	}
 }
 
-t_heap_node	*heap_pop(t_heap *heap, t_heap_node node, t_scheduler sched)
+int	best_child(t_heap *heap, int i, t_scheduler sched)
+{
+	int	left;
+	int	right;
+	int	best;
+
+	left = 2 * i + 1;
+	right = 2 * i + 2;
+	best = i;
+	if (left < heap->size
+		&& priority(&heap->data[left], &heap->data[best], sched))
+		best = left;
+	if (right < heap->size
+		&& priority(&heap->data[right], &heap->data[best], sched))
+		best = right;
+	return (best);
+}
+
+t_heap_node	heap_pop(t_heap *heap, t_scheduler sched)
 {
 	t_heap_node	top;
 	int			i;
-	int			left;
-	int			right;
 	int			best;
 
-	i = 0;
 	top = heap->data[0];
 	heap->size--;
 	heap->data[0] = heap->data[heap->size];
+	i = 0;
 	while (1)
 	{
-		left = 2 * i + 1;
-		right = 2 * i + 2;
-		best = i;
+		best = best_child(heap, i, sched);
+		if (best == i)
+			break ;
+		swap(&heap->data[i], &heap->data[best]);
+		i = best;
 	}
+	return (top);
 }
 
 void	swap(t_heap_node *a, t_heap_node *b)
