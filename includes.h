@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/03 17:46:34 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/05 15:10:50 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,27 @@ typedef struct s_config
 	t_scheduler	scheduler;
 }	t_config;
 
+typedef struct s_heap_node
+{
+	int			coder_id;
+	long long	request_time;
+	long long	deadline;
+}	t_heap_node;
+
+typedef struct s_heap
+{
+	t_heap_node	*data;
+	int			size;
+	int			capacity;
+}	t_heap;
+
 typedef struct s_dongle
 {
 	pthread_mutex_t	mutex;
 	pthread_cond_t	cond;
 	int				held;
 	long long		release_time;
+	t_heap			queue;
 }	t_dongle;
 
 typedef struct s_coder
@@ -88,5 +103,10 @@ int			init_coders(t_sim *sim);
 int			init_sim(t_sim *sim);
 void		clean_sim(t_sim *sim);
 void		clean_dongles(t_sim *sim);
+
+/* Heap */
+int			priority(t_heap_node *a, t_heap_node *b, t_scheduler sched);
+void		heap_push(t_heap *heap, t_heap_node node, t_scheduler shed);
+void		swap(t_heap_node *a, t_heap_node *b);
 
 #endif

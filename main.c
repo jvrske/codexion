@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:34 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/03 12:27:55 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/03 18:07:35 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(int argc, char **argv)
 {
+	t_sim		sim;
 	t_config	*config;
 
 	if (argc != 9)
@@ -25,5 +26,11 @@ int	main(int argc, char **argv)
 	config = parser(argv);
 	if (!config)
 		return (1);
+	memset(&sim, 0, sizeof(t_sim));
+	sim.config = *config;
+	free(config);
+	if (init_sim(&sim))
+		return (1);
+	clean_sim(&sim);
 	return (0);
 }

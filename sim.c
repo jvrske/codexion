@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 12:23:32 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/03 17:48:11 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/05 11:44:38 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	init_dongles(t_sim *sim)
 	{
 		sim->dongles[i].held = 0;
 		sim->dongles[i].release_time = 0;
+		sim->dongles[i].queue.data = malloc(sizeof(t_heap_node)
+				* sim->config.number_of_coders);
+		sim->dongles[i].queue.size = 0;
+		sim->dongles[i].queue.capacity = sim->config.number_of_coders;
 		pthread_mutex_init(&sim->dongles[i].mutex, NULL);
 		pthread_cond_init(&sim->dongles[i].cond, NULL);
 		i++;
@@ -75,6 +79,7 @@ void	clean_dongles(t_sim *sim)
 	i = 0;
 	while (i < sim->config.number_of_coders)
 	{
+		free(sim->dongles[i].queue.data);
 		pthread_cond_destroy(&sim->dongles[i].cond);
 		pthread_mutex_destroy(&sim->dongles[i].mutex);
 		i++;
