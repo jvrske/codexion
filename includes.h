@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/05 15:44:04 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/05 16:55:28 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,15 @@ void		heap_push(t_heap *heap, t_heap_node node, t_scheduler shed);
 void		swap(t_heap_node *a, t_heap_node *b);
 void		heap_free(t_heap *heap);
 t_heap_node	heap_pop(t_heap *heap, t_scheduler sched);
+
+/* Dongle */
+int			dongle_blocked(t_dongle *dongle, t_coder *coder);
+void		dongle_take(t_dongle *dongle, t_coder *coder);
+void		dongle_release(t_dongle *dongle, t_coder *coder);
+
+/* Coder */
+int			is_running(t_sim *sim);
+void		*coder_routine(void *arg);
+void		coder_compile(t_coder *coder);
 
 #endif
