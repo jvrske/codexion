@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 16:37:02 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/08 15:09:33 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/08 16:13:42 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	*coder_routine(void *arg)
 	t_coder	*coder;
 
 	coder = (t_coder *)arg;
+	printf("coder %d started\n", coder->coder_id);
 	while (is_running(coder->sim))
 	{
 		coder_compile(coder);

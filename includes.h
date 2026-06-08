@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/05 16:55:28 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/08 15:58:03 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,14 @@ void		dongle_release(t_dongle *dongle, t_coder *coder);
 int			is_running(t_sim *sim);
 void		*coder_routine(void *arg);
 void		coder_compile(t_coder *coder);
+
+/* Monitor */
+int			check_burnout(t_sim *sim, t_coder *coder);
+int			all_compiled(t_sim *sim);
+void		*monitor_routine(void *arg);
+void		broadcast_all(t_sim *sim);
+
+/* Runner */
+void		run_sim(t_sim *sim);
 
 #endif

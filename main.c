@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:34 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/03 18:07:35 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/08 15:45:05 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	free(config);
 	if (init_sim(&sim))
 		return (1);
+	run_sim(&sim);
 	clean_sim(&sim);
 	return (0);
 }

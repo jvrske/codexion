@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 15:42:16 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/05 15:46:30 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/08 15:54:19 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	heap_init(t_heap *heap, int capacity)
 {
 	heap->data = malloc(sizeof(t_heap_node) * capacity);
-	if (!heap->capacity)
+	if (!heap->data)
 		return (-1);
 	heap->size = 0;
 	heap->capacity = capacity;

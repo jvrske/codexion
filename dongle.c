@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 15:55:10 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/05 16:37:28 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/08 16:12:02 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	dongle_take(t_dongle *dongle, t_coder *coder)
 	node.request_time = get_time_ms();
 	node.deadline = coder->last_compile + coder->config->time_to_burnout;
 	heap_push(&dongle->queue, node, coder->sim->config.scheduler);
-	while (dongle_blocked(dongle, coder))
+	while (is_running(coder->sim) && dongle_blocked(dongle, coder))
 		pthread_cond_wait(&dongle->cond, &dongle->mutex);
 	heap_pop(&dongle->queue, coder->sim->config.scheduler);
 	dongle->held = 1;
