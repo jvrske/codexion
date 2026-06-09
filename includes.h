@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:37 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/08 15:58:03 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/09 10:31:49 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_heap_node	heap_pop(t_heap *heap, t_scheduler sched);
 int			dongle_blocked(t_dongle *dongle, t_coder *coder);
 void		dongle_take(t_dongle *dongle, t_coder *coder);
 void		dongle_release(t_dongle *dongle, t_coder *coder);
+void		timed_wait(t_dongle *dongle);
 
 /* Coder */
 int			is_running(t_sim *sim);

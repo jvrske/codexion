@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 12:51:18 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 16:27:55 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/09 10:52:52 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,28 @@ t_scheduler	scheduler_parser(char *s)
 int	config_parser(t_config *config)
 {
 	if (config->number_of_coders <= 0)
-		return (fprintf(stderr, "Number of coders must be a valid integer\n"));
+		return (fprintf(stderr, "Number of coders must be a valid integer\n"),
+			1);
 	if (config->time_to_burnout <= 0)
-		return (fprintf(stderr, "Time to burnout must be a valid integer\n"));
+		return (fprintf(stderr, "Time to burnout must be a valid integer\n"),
+			1);
 	if (config->time_to_compile <= 0)
-		return (fprintf(stderr, "Time to compile must be a valid integer\n"));
+		return (fprintf(stderr, "Time to compile must be a valid integer\n"),
+			1);
 	if (config->time_to_debug <= 0)
-		return (fprintf(stderr, "Time to debug must be a valid integer\n"));
+		return (fprintf(stderr, "Time to debug must be a valid integer\n"),
+			1);
 	if (config->time_to_refactor <= 0)
-		return (fprintf(stderr, "Time to refactor must be a valid integer\n"));
+		return (fprintf(stderr, "Time to refactor must be a valid integer\n"),
+			1);
 	if (config->number_of_compiles_required <= 0)
 		return (fprintf(stderr, "Number of compiles required must be a "
-				"valid integer\n"));
+				"valid integer\n"), 1);
 	if (config->dongle_cooldown < 0)
-		return (fprintf(stderr, "Dongle cooldown must be a valid integer\n"));
+		return (fprintf(stderr, "Dongle cooldown must be a valid integer\n"),
+			1);
 	if (config->scheduler == INVALID)
 		return (fprintf(stderr, "Scheduler format is invalid, "
-				"must be fifo or edf\n"));
-	return (1);
+				"must be fifo or edf\n"), 1);
+	return (0);
 }

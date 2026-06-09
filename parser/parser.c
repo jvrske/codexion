@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:24:25 by csilva            #+#    #+#             */
-/*   Updated: 2026/05/21 15:44:35 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/09 10:54:24 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_config	*parser(char **argv)
 	config->number_of_compiles_required = int_parser(argv[6]);
 	config->dongle_cooldown = int_parser(argv[7]);
 	config->scheduler = scheduler_parser(argv[8]);
-	if (!config_parser(config))
+	if (config_parser(config))
 	{
 		free_all(config);
 		return (NULL);

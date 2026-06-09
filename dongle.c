@@ -6,11 +6,12 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 15:55:10 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/08 16:12:02 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/09 10:32:44 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
+#include <sys/time.h>
 
 void	dongle_take(t_dongle *dongle, t_coder *coder)
 {
@@ -22,7 +23,7 @@ void	dongle_take(t_dongle *dongle, t_coder *coder)
 	node.deadline = coder->last_compile + coder->config->time_to_burnout;
 	heap_push(&dongle->queue, node, coder->sim->config.scheduler);
 	while (is_running(coder->sim) && dongle_blocked(dongle, coder))
-		pthread_cond_wait(&dongle->cond, &dongle->mutex);
+		timed_wait(dongle);
 	heap_pop(&dongle->queue, coder->sim->config.scheduler);
 	dongle->held = 1;
 	log_state(coder->sim, coder->coder_id, "has taken a dongle");
@@ -47,4 +48,20 @@ void	dongle_release(t_dongle *dongle, t_coder *coder)
 	dongle->release_time = get_time_ms() + coder->config->dongle_cooldown;
 	pthread_cond_broadcast(&dongle->cond);
 	pthread_mutex_unlock(&dongle->mutex);
+}
+
+void	timed_wait(t_dongle *dongle)
+{
+	struct timeval	tv;
+	struct timespec	ts;
+
+	gettimeofday(&tv, NULL);
+	ts.tv_sec = tv.tv_sec;
+	ts.tv_nsec = (tv.tv_usec + 1000) * 1000;
+	if (ts.tv_nsec >= 1000000000)
+	{
+		ts.tv_sec++;
+		ts.tv_nsec -= 1000000000;
+	}
+	pthread_cond_timedwait(&dongle->cond, &dongle->mutex, &ts);
 }
