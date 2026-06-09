@@ -14,7 +14,7 @@ Key challenges: deadlock prevention, starvation avoidance, precise burnout detec
 
 ### Compilation
 
-    make all
+    make
 
 ### Usage
 
@@ -39,7 +39,7 @@ Key challenges: deadlock prevention, starvation avoidance, precise burnout detec
 
 ### Makefile rules
 
-    make all    - build
+    make        - build
     make clean  - remove object files
     make fclean - remove object files and binary
     make re     - full rebuild
