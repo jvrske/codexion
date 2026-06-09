@@ -35,7 +35,7 @@ Key challenges: deadlock prevention, starvation avoidance, precise burnout detec
 
 ### Example
 
-    ./codexion 4 800 200 200 200 5 100 fifo
+    ./codexion 4 1200 200 200 200 5 100 fifo
 
 ### Makefile rules
 

@@ -6,7 +6,7 @@
 /*   By: csilva <csilva@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:12:11 by csilva            #+#    #+#             */
-/*   Updated: 2026/06/09 10:58:29 by csilva           ###   ########.fr       */
+/*   Updated: 2026/06/09 11:34:02 by csilva           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_burnout(t_sim *sim, t_coder *coder)
 		ref = sim->start_time;
 	if (get_time_ms() - ref > sim->config.time_to_burnout)
 	{
-		log_state(sim, coder->coder_id, "burned out");
+		log_burnout(sim, coder->coder_id);
 		pthread_mutex_lock(&sim->state_mutex);
 		sim->running = 0;
 		pthread_mutex_unlock(&sim->state_mutex);
